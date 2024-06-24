@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="./output.css" rel="stylesheet">
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.13.8/dist/cdn.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body x-data="{darkMode: true}" :class="{'dark': darkMode === true }" class="antialiased">
+    <header
+        class="dark:text-contessa-200 text-contessa-950 bg-contessa-200 dark:bg-gradient-to-br from-stone-900 to-stone-600">
+        <!-- navbar -->
+        <div x-data="{ nav: false }"
+            class="relative top-0 left-0 right-0 flex items-center justify-between py-3 mx-auto h-100 max-w-1200">
+            <a href="/">
+                <h1
+                    class="ml-4 text-3xl dark:text-transparent bg-clip-text bg-gradient-to-r from-contessa-400 to-contessa-700">
+                    AntoniyaDev</h1>
+            </a>
+            <!-- dark mode -->
+            <label class="swap swap-rotate">
+
+                <!-- this hidden checkbox controls the state -->
+                <input type="checkbox" class="hidden" @click="darkMode=!darkMode" />
+
+                <!-- sun icon -->
+                <svg class="w-10 h-10 fill-current swap-on" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path
+                        d="M5.64,17l-.71.71a1,1,0,0,0,0,1.41,1,1,0,0,0,1.41,0l.71-.71A1,1,0,0,0,5.64,17ZM5,12a1,1,0,0,0-1-1H3a1,1,0,0,0,0,2H4A1,1,0,0,0,5,12Zm7-7a1,1,0,0,0,1-1V3a1,1,0,0,0-2,0V4A1,1,0,0,0,12,5ZM5.64,7.05a1,1,0,0,0,.7.29,1,1,0,0,0,.71-.29,1,1,0,0,0,0-1.41l-.71-.71A1,1,0,0,0,4.93,6.34Zm12,.29a1,1,0,0,0,.7-.29l.71-.71a1,1,0,1,0-1.41-1.41L17,5.64a1,1,0,0,0,0,1.41A1,1,0,0,0,17.66,7.34ZM21,11H20a1,1,0,0,0,0,2h1a1,1,0,0,0,0-2Zm-9,8a1,1,0,0,0-1,1v1a1,1,0,0,0,2,0V20A1,1,0,0,0,12,19ZM18.36,17A1,1,0,0,0,17,18.36l.71.71a1,1,0,0,0,1.41,0,1,1,0,0,0,0-1.41ZM12,6.5A5.5,5.5,0,1,0,17.5,12,5.51,5.51,0,0,0,12,6.5Zm0,9A3.5,3.5,0,1,1,15.5,12,3.5,3.5,0,0,1,12,15.5Z" />
+                </svg>
+
+                <!-- moon icon -->
+                <svg class="w-10 h-10 fill-current swap-off" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path
+                        d="M21.64,13a1,1,0,0,0-1.05-.14,8.05,8.05,0,0,1-3.37.73A8.15,8.15,0,0,1,9.08,5.49a8.59,8.59,0,0,1,.25-2A1,1,0,0,0,8,2.36,10.14,10.14,0,1,0,22,14.05,1,1,0,0,0,21.64,13Zm-9.5,6.69A8.14,8.14,0,0,1,7.08,5.22v.27A10.15,10.15,0,0,0,17.22,15.63a9.79,9.79,0,0,0,2.1-.22A8.11,8.11,0,0,1,12.14,19.73Z" />
+                </svg>
+
+            </label>
+            <ul class="hidden text-lg md:flex menu menu-horizontal rounded-box">
+                <li class="p-5"><a href="#about">About Me</a></li>
+                <li class="p-5"><a href="#work">Work</a></li>
+                <li class="p-5"><a href="#contact">Contact</a></li>
+            </ul>
+            <div @click="nav = !nav" class="block mr-6 md:hidden ">
+                <svg x-show="!nav" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
+                    class="w-10 h-10">
+                    <path fill-rule="evenodd"
+                        d="M2 4.75A.75.75 0 0 1 2.75 4h14.5a.75.75 0 0 1 0 1.5H2.75A.75.75 0 0 1 2 4.75ZM2 10a.75.75 0 0 1 .75-.75h14.5a.75.75 0 0 1 0 1.5H2.75A.75.75 0 0 1 2 10Zm0 5.25a.75.75 0 0 1 .75-.75h14.5a.75.75 0 0 1 0 1.5H2.75a.75.75 0 0 1-.75-.75Z"
+                        clip-rule="evenodd" />
+                </svg>
+                <svg x-show="nav" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
+                    class="w-10 h-10">
+                    <path
+                        d="M6.28 5.22a.75.75 0 0 0-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 1 0 1.06 1.06L10 11.06l3.72 3.72a.75.75 0 1 0 1.06-1.06L11.06 10l3.72-3.72a.75.75 0 0 0-1.06-1.06L10 8.94 6.28 5.22Z" />
+                </svg>
+            </div>
+            <div x-show="nav"
+                class="fixed h-full left-0 top-0 w-[60%]ease-in-out duration-500 z-50 bg-stone-100 dark:bg-stone-900">
+                <a href="/">
+                    <h1 class="m-4 text-3xl primary-color">AntoniyaDev</h1>
+                </a>
+                <ul class="p-8 text-2xl">
+                    <li class="p-2"><a @click="nav=!nav" href="#about">About Me</a></li>
+                    <li class="p-2"><a @click="nav=!nav" href="#work">Work</a></li>
+                    <li class="p-2"><a @click="nav=!nav" href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <main class="">
+        <!-- hero -->
+        <section id="hero"
+            class="dark:bg-stone-900 bg-contessa-100 md:h-[95vh] flex gap-6 items-center pt-[10vh] pb-[20vh] justify-center flex-col xl:flex-row">
+            <div class="md:max-w-[300px] sm:max-w-[150px]">
+                <img src="/img/hero.jpg" alt="hero image" class="object-cover mx-auto rounded-full h-300 w-300" />
+            </div>
+            <div class="p-6 dark:text-white text-stone-800">
+                <h1 class="text-4xl sm:text-xl lg:text-6xl">
+                    <span class="primary-color">Hi, I'm a</span>
+                    <div
+                        class="pr-5 overflow-hidden border-r-4 animate-typing whitespace-nowrap border-r-black dark:border-r-stone-100">
+                        Full-Stack Dev</div>
+                </h1>
+                <div class="flex flex-col">
+                    <p class="my-6 sm:text-lg lg:text-xl animate-moveInLeft">
+                        My name is Antoniya Stefanova and I have 5+ years experience in web development.</p>
+                    <div class=" animate-moveInBottom">
+                        <a href="https://github.com/antoniyadev" target="_blank"
+                            class="px-6 py-3 mr-4 text-white border-gray-400 rounded-xl bg-gradient-to-br from-contessa-400 to-contessa-700 hover:bg-none hover:border">
+                            My Github</a>
+                        <a href="#contact"
+                            class="px-6 py-3 mr-4 border border-gray-400 rounded-xl hover:bg-gradient-to-br from-contessa-400 to-contessa-700 hover:border-none">Contact
+                            me</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about"
+            class="flex flex-col items-center text-center justify-center md:h-[90vh] bg-contessa-300 dark:bg-stone-800 [clip-path:polygon(0_15vh,100%_0,100%_100%,0_90%)] mt-[-20vh] text-stone-800 dark:text-white pt-[10vh] pb-[10vh]">
+            <div class="max-w-[800px] px-6 mb-6">
+                <h2 class="my-4 text-4xl primary-color">About me</h2>
+                <p class="text-lg lg:text-xl">With 5+ experience in web development, I am skilled in PHP,
+                    Laravel, JavaScript. I'm currently focused on expanding my experience designing and
+                    developing single-page applications using the TALL(Tailwind, Alpine, Laravel, Livewire)
+                    stack. I have a good knowledge in every phase of the web app development from designing to
+                    testing.</p>
+            </div>
+            <div class="mt-2">
+                <h2 class="text-4xl primary-color">My tech stack
+                </h2>
+                <div class="flex items-center justify-center space-x-9 p-3 max-w-[1200px]">
+                    <div class="max-w-[5rem] hover:scale-105">
+                        <a href="https://laravel.com" target="_blank">
+                            <img src="img/laravel.png" alt="laravel logo" />
+                            <p class="mt-2">Laravel</p>
+                        </a>
+                    </div>
+                    <div class="max-w-[5rem] hover:scale-105">
+                        <a href="https://laravel-livewire.com/" target="_blank">
+                            <img src="img/livewire.webp" alt="livewire logo" />
+                            <p class="mt-2">Livewire</p>
+                        </a>
+                    </div>
+                    <div class="max-w-[5rem] hover:scale-105">
+                        <a href="https://tailwindcss.com/" target="_blank">
+                            <img src="img/tailwind.svg" alt="tailwind logo" />
+                            <p class="mt-2">Tailwind CSS</p>
+                        </a>
+                    </div>
+                    <div class="max-w-[5rem] hover:scale-105">
+                        <a href="https://alpinejs.dev/" target="_blank">
+                            <img src="img/alpinejs.svg" alt="alpinejs logo" />
+                            <p class="mt-2">Alpine.js</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+
+        </section>
+
+        <!-- work -->
+        <section id="work"
+            class="bg-contessa-100 text-contessa-900 dark:bg-gradient-to-br from-contessa-900 to-stone-600 dark:text-contessa-100 mt-[-6rem] p-8">
+            <div class="max-w-[1200px] mx-auto p-2">
+                <div class="pb-8 dark:text-contessa-200">
+                    <p class="mb-3 text-4xl mt-11">Work</p>
+                    <p class="text-xl">All the projects here are specially developed for this portfolio using TALL Stack
+                    </p>
+                </div>
+
+                <!-- projects-->
+                <div class="[&_[x-cloak]]:hidden"
+                    x-data="{ modalOpen1: false, modalOpen2: false, modalOpen3: false, modalOpen4: false }">
+
+                    <!-- 2. The backdrop layer -->
+                    <div x-show="modalOpen1" x-transition:enter="transition ease-out duration-200"
+                        x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
+                        x-transition:leave="transition ease-out duration-100" x-transition:leave-start="opacity-100"
+                        x-transition:leave-end="opacity-0"
+                        class="fixed inset-0 z-[99] bg-black bg-opacity-50 transition-opacity"></div>
+                    <div x-show="modalOpen2" x-transition:enter="transition ease-out duration-200"
+                        x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
+                        x-transition:leave="transition ease-out duration-100" x-transition:leave-start="opacity-100"
+                        x-transition:leave-end="opacity-0"
+                        class="fixed inset-0 z-[99] bg-black bg-opacity-50 transition-opacity"></div>
+                    <div x-show="modalOpen3" x-transition:enter="transition ease-out duration-200"
+                        x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
+                        x-transition:leave="transition ease-out duration-100" x-transition:leave-start="opacity-100"
+                        x-transition:leave-end="opacity-0"
+                        class="fixed inset-0 z-[99] bg-black bg-opacity-50 transition-opacity"></div>
+                    <div x-show="modalOpen4" x-transition:enter="transition ease-out duration-200"
+                        x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
+                        x-transition:leave="transition ease-out duration-100" x-transition:leave-start="opacity-100"
+                        x-transition:leave-end="opacity-0"
+                        class="fixed inset-0 z-[99] bg-black bg-opacity-50 transition-opacity"></div>
+
+                    <!-- 3. The modal videos -->
+                    <div x-show="modalOpen1" x-transition:enter="transition ease-out duration-300"
+                        x-transition:enter-start="opacity-0 scale-75" x-transition:enter-end="opacity-100 scale-100"
+                        x-transition:leave="transition ease-out duration-200"
+                        x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-75"
+                        id="modal" class="fixed inset-0 z-[99999] flex p-6" role="dialog" aria-modal="true">
+                        <div class="flex items-center h-full max-w-5xl mx-auto">
+                            <div class="w-full max-h-full overflow-hidden bg-black shadow-2xl rounded-3xl aspect-video"
+                                @click.outside="modalOpen1 = false" @keydown.escape.window="modalOpen1 = false">
+                                <video x-init="$watch('modalOpen1', value => value ? $el.play() : $el.pause())"
+                                    width="1920" height="1080" loop controls>
+                                    <source src="video/shopy.webm" type="video/webm" />
+                                    Your browser does not support the video tag.
+                                </video>
+                            </div>
+                        </div>
+                    </div>
+                    <div x-show="modalOpen2" x-transition:enter="transition ease-out duration-300"
+                        x-transition:enter-start="opacity-0 scale-75" x-transition:enter-end="opacity-100 scale-100"
+                        x-transition:leave="transition ease-out duration-200"
+                        x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-75"
+                        id="modal" class="fixed inset-0 z-[99] flex p-6" role="dialog" aria-modal="true">
+                        <div class="flex items-center h-full max-w-5xl mx-auto">
+                            <div class="w-full max-h-full overflow-hidden bg-black shadow-2xl rounded-3xl aspect-video"
+                                @click.outside="modalOpen2 = false" @keydown.escape.window="modalOpen2 = false">
+                                <video x-init="$watch('modalOpen2', value => value ? $el.play() : $el.pause())"
+                                    width="1920" height="1080" loop controls>
+                                    <source src="video/chaty.webm" type="video/webm" />
+                                    Your browser does not support the video tag.
+                                </video>
+                            </div>
+                        </div>
+                    </div>
+                    <div x-show="modalOpen3" x-transition:enter="transition ease-out duration-300"
+                        x-transition:enter-start="opacity-0 scale-75" x-transition:enter-end="opacity-100 scale-100"
+                        x-transition:leave="transition ease-out duration-200"
+                        x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-75"
+                        id="modal" class="fixed inset-0 z-[99] flex p-6" role="dialog" aria-modal="true">
+                        <div class="flex items-center h-full max-w-5xl mx-auto">
+                            <div class="w-full max-h-full overflow-hidden bg-black shadow-2xl rounded-3xl aspect-video"
+                                @click.outside="modalOpen3 = false" @keydown.escape.window="modalOpen3 = false">
+                                <video x-init="$watch('modalOpen3', value => value ? $el.play() : $el.pause())"
+                                    width="1920" height="1080" loop controls>
+                                    <source src="video/screen-capture.webm" type="video/webm" />
+                                    Your browser does not support the video tag.
+                                </video>
+                            </div>
+                        </div>
+                    </div>
+                    <div x-show="modalOpen4" x-transition:enter="transition ease-out duration-300"
+                        x-transition:enter-start="opacity-0 scale-75" x-transition:enter-end="opacity-100 scale-100"
+                        x-transition:leave="transition ease-out duration-200"
+                        x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-75"
+                        id="modal" class="fixed inset-0 z-[99] flex p-6" role="dialog" aria-modal="true">
+                        <div class="flex items-center h-full max-w-5xl mx-auto">
+                            <div class="w-full max-h-full overflow-hidden bg-black shadow-2xl rounded-3xl aspect-video"
+                                @click.outside="modalOpen4 = false" @keydown.escape.window="modalOpen4 = false">
+                                <video x-init="$watch('modalOpen4', value => value ? $el.play() : $el.pause())"
+                                    width="1920" height="1080" loop controls>
+                                    <source src="video/screen-capture.webm" type="video/webm" />
+                                    Your browser does not support the video tag.
+                                </video>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid gap-10 md:grid-cols-2">
+                        <!-- proj1 -->
+                        <div class="transition-transform duration-300 transform shadow-xl hover:scale-105 card">
+                            <!-- Video thumbnail -->
+                            <button class="relative flex items-center justify-center " @click="modalOpen1 = true"
+                                aria-controls="modal" aria-label="Watch the video">
+
+                                <img class="w-full h-full transition-shadow duration-300 ease-in-out shadow-2xl opacity-50 focus:outline-none focus-visible:ring focus-visible:ring-indigo-300 rounded-t-xl group"
+                                    src="img/shopy.png" width="768" height="432" alt="Modal video thumbnail" />
+                                <!-- Play icon -->
+                                <svg class="absolute mx-auto transition-transform duration-300 ease-in-out pointer-events-none group-hover:scale-110"
+                                    xmlns="http://www.w3.org/2000/svg" width="72" height="72">
+                                    <circle class="fill-white" cx="36" cy="36" r="36" fill-opacity=".8" />
+                                    <path class="fill-black drop-shadow-2xl"
+                                        d="M44 36a.999.999 0 0 0-.427-.82l-10-7A1 1 0 0 0 32 29V43a.999.999 0 0 0 1.573.82l10-7A.995.995 0 0 0 44 36V36c0 .001 0 .001 0 0Z" />
+                                </svg>
+                            </button>
+                            <!-- End: Video thumbnail -->
+
+                            <div class="card-body rounded-b-xl bg-contessa-200 dark:bg-stone-900">
+                                <h2 class="card-title">Shopping Lists</h2>
+                                <h3>App for creating and sending shopping lists to a friend </h3>
+
+
+                                <ul class="max-w-md space-y-1 list-inside text-stone-500 dark:text-stone-400">
+                                    <li class="flex items-center">
+                                        <svg class="w-3.5 h-3.5 me-2 text-contessa-500 dark:text-contessa-400 flex-shrink-0"
+                                            aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                                            viewBox="0 0 20 20">
+                                            <path
+                                                d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z" />
+                                        </svg>
+                                        DaisyUI
+                                    </li>
+                                    <li class="flex items-center">
+                                        <svg class="w-3.5 h-3.5 me-2 text-contessa-500 dark:text-contessa-400 flex-shrink-0"
+                                            aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                                            viewBox="0 0 20 20">
+                                            <path
+                                                d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z" />
+                                        </svg>
+                                        Emails
+                                    </li>
+                                    <li class="flex items-center">
+                                        <svg class="w-3.5 h-3.5 me-2 text-contessa-500 dark:text-contessa-400 flex-shrink-0"
+                                            aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                                            viewBox="0 0 20 20">
+                                            <path
+                                                d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z" />
+                                        </svg>
+                                        Jobs, queues and crons
+                                    </li>
+                                    <li class="flex items-center">
+                                        <svg class="w-3.5 h-3.5 me-2 text-contessa-500 dark:text-contessa-400 flex-shrink-0"
+                                            aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                                            viewBox="0 0 20 20">
+                                            <path
+                                                d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z" />
+                                        </svg>
+                                        Policies
+                                    </li>
+                                    <!-- <li class="flex items-center">
+                                        <svg class="w-3.5 h-3.5 me-2 text-stone-500 dark:text-stone-400 flex-shrink-0"
+                                            aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                                            viewBox="0 0 20 20">
+                                            <path
+                                                d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z" />
+                                        </svg>
+                                        TBD
+                                    </li> -->
+                                </ul>
+
+                                <div class="justify-end card-actions">
+                                    <a href="https://github.com/antoniyadev/shopping-lists" target="_blank"
+                                        class="px-3 py-3 border border-stone-900 dark:border-white rounded-xl hover:bg-gradient-to-br from-contessa-400 to-contessa-700 hover:border-none">View
+                                        Source</a>
+                                    <button @click="modalOpen1 = true"
+                                        class="px-3 py-3 border border-stone-900 dark:border-white rounded-xl hover:bg-gradient-to-br from-contessa-400 to-contessa-700 hover:border-none">Watch
+                                        Demo</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- proj2 -->
+                        <div class="transition-transform duration-300 transform shadow-xl hover:scale-105 card">
+                            <!-- Video thumbnail -->
+                            <button class="relative flex items-center justify-center " @click="modalOpen2 = true"
+                                aria-controls="modal" aria-label="Watch the video">
+
+                                <img class="w-full h-full transition-shadow duration-300 ease-in-out shadow-2xl opacity-50 focus:outline-none focus-visible:ring focus-visible:ring-indigo-300 rounded-t-xl group"
+                                    src="img/chaty.png" width="768" height="432" alt="Modal video thumbnail" />
+                                <!-- Play icon -->
+                                <svg class="absolute mx-auto transition-transform duration-300 ease-in-out pointer-events-none group-hover:scale-110"
+                                    xmlns="http://www.w3.org/2000/svg" width="72" height="72">
+                                    <circle class="fill-white" cx="36" cy="36" r="36" fill-opacity=".8" />
+                                    <path class="fill-black drop-shadow-2xl"
+                                        d="M44 36a.999.999 0 0 0-.427-.82l-10-7A1 1 0 0 0 32 29V43a.999.999 0 0 0 1.573.82l10-7A.995.995 0 0 0 44 36V36c0 .001 0 .001 0 0Z" />
+                                </svg>
+                            </button>
+
+                            <!-- End: Video thumbnail -->
+                            <div class="card-body rounded-b-xl bg-contessa-200 dark:bg-stone-900">
+                                <h2 class="card-title">Chat</h2>
+                                <p>Real Time Messaging App</p>
+                                <ul class="max-w-md space-y-1 list-inside text-stone-500 dark:text-stone-400">
+                                    <li class="flex items-center">
+                                        <svg class="w-3.5 h-3.5 me-2 text-contessa-500 dark:text-contessa-400 flex-shrink-0"
+                                            aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                                            viewBox="0 0 20 20">
+                                            <path
+                                                d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z" />
+                                        </svg>
+                                        WebSockets
+                                    </li>
+                                    <li class="flex items-center">
+                                        <svg class="w-3.5 h-3.5 me-2 text-contessa-500 dark:text-contessa-400 flex-shrink-0"
+                                            aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                                            viewBox="0 0 20 20">
+                                            <path
+                                                d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z" />
+                                        </svg>
+                                        Notifications
+                                    </li>
+                                    <li class="flex items-center">
+                                        <svg class="w-3.5 h-3.5 me-2 text-contessa-500 dark:text-contessa-400 flex-shrink-0"
+                                            aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                                            viewBox="0 0 20 20">
+                                            <path
+                                                d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z" />
+                                        </svg>
+                                        Factories and Seeders
+                                    </li>
+                                    <li class="flex items-center">
+                                        <svg class="w-3.5 h-3.5 me-2 text-contessa-500 dark:text-contessa-400 flex-shrink-0"
+                                            aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                                            viewBox="0 0 20 20">
+                                            <path
+                                                d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z" />
+                                        </svg>
+                                        Scroll messages with Alpine js
+                                    </li>
+                                </ul>
+                                <div class="justify-end card-actions">
+                                    <button class="px-3 py-3 text-gray-400 border border-gray-400 rounded-xl "
+                                        disabled>View Source</button>
+                                    <button @click="modalOpen2 = true"
+                                        class="px-3 py-3 border border-stone-900 dark:border-white rounded-xl hover:bg-gradient-to-br from-contessa-400 to-contessa-700 hover:border-none">Watch
+                                        Demo</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- proj3 -->
+                        <div class="transition-transform duration-300 transform shadow-xl hover:scale-105 card">
+                            <!-- Video thumbnail -->
+                            <button class="relative flex items-center justify-center " @click="modalOpen1 = true"
+                                aria-controls="modal" aria-label="Watch the video">
+
+                                <img class="w-full h-full transition-shadow duration-300 ease-in-out shadow-2xl opacity-50 focus:outline-none focus-visible:ring focus-visible:ring-indigo-300 rounded-t-xl group"
+                                    src="img/proj2.png" width="768" height="432" alt="Modal video thumbnail" />
+                                <!-- Play icon -->
+                                <svg class="absolute mx-auto transition-transform duration-300 ease-in-out pointer-events-none group-hover:scale-110"
+                                    xmlns="http://www.w3.org/2000/svg" width="72" height="72">
+                                    <circle class="fill-white" cx="36" cy="36" r="36" fill-opacity=".8" />
+                                    <path class="fill-black drop-shadow-2xl"
+                                        d="M44 36a.999.999 0 0 0-.427-.82l-10-7A1 1 0 0 0 32 29V43a.999.999 0 0 0 1.573.82l10-7A.995.995 0 0 0 44 36V36c0 .001 0 .001 0 0Z" />
+                                </svg>
+                            </button>
+
+                            <!-- End: Video thumbnail -->
+                            <div class="card-body rounded-b-xl bg-contessa-200 dark:bg-stone-900">
+                                <h2 class="card-title">SightSeeing</h2>
+                                <p>A short desciption</p>
+                                <ul class="max-w-md space-y-1 list-inside text-stone-500 dark:text-stone-400">
+                                    <li class="flex items-center">
+                                        <svg class="w-3.5 h-3.5 me-2 text-contessa-500 dark:text-contessa-400 flex-shrink-0"
+                                            aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                                            viewBox="0 0 20 20">
+                                            <path
+                                                d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z" />
+                                        </svg>
+
+                                    </li>
+                                    <li class="flex items-center">
+                                        <svg class="w-3.5 h-3.5 me-2 text-contessa-500 dark:text-contessa-400 flex-shrink-0"
+                                            aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                                            viewBox="0 0 20 20">
+                                            <path
+                                                d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z" />
+                                        </svg>
+
+                                    </li>
+                                    <li class="flex items-center">
+                                        <svg class="w-3.5 h-3.5 me-2 text-contessa-500 dark:text-contessa-400 flex-shrink-0"
+                                            aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                                            viewBox="0 0 20 20">
+                                            <path
+                                                d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z" />
+                                        </svg>
+
+                                    </li>
+                                    <li class="flex items-center">
+                                        <svg class="w-3.5 h-3.5 me-2 text-contessa-500 dark:text-contessa-400 flex-shrink-0"
+                                            aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                                            viewBox="0 0 20 20">
+                                            <path
+                                                d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z" />
+                                        </svg>
+
+                                    </li>
+                                </ul>
+                                <div class="justify-end card-actions">
+                                    <a href="https://github.com/antoniyadev/sightseeing" target="_blank"
+                                        class="px-3 py-3 border border-stone-900 dark:border-white rounded-xl hover:bg-gradient-to-br from-contessa-400 to-contessa-700 hover:border-none">View
+                                        Source</a>
+                                    <button
+                                        class="px-3 py-3 border border-stone-900 dark:border-white rounded-xl hover:bg-gradient-to-br from-contessa-400 to-contessa-700 hover:border-none">Watch
+                                        Demo</button>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <!-- proj4 -->
+                        <div class="transition-transform duration-300 transform shadow-xl hover:scale-105 card">
+                            <!-- Video thumbnail -->
+                            <button class="relative flex items-center justify-center " @click="modalOpen1 = true"
+                                aria-controls="modal" aria-label="Watch the video">
+
+                                <img class="w-full h-full transition-shadow duration-300 ease-in-out shadow-2xl opacity-50 focus:outline-none focus-visible:ring focus-visible:ring-indigo-300 rounded-t-xl group"
+                                    src="img/blogy.png" width="768" height="432" alt="Modal video thumbnail" />
+                                <!-- Play icon -->
+                                <svg class="absolute mx-auto transition-transform duration-300 ease-in-out pointer-events-none group-hover:scale-110"
+                                    xmlns="http://www.w3.org/2000/svg" width="72" height="72">
+                                    <circle class="fill-white" cx="36" cy="36" r="36" fill-opacity=".8" />
+                                    <path class="fill-black drop-shadow-2xl"
+                                        d="M44 36a.999.999 0 0 0-.427-.82l-10-7A1 1 0 0 0 32 29V43a.999.999 0 0 0 1.573.82l10-7A.995.995 0 0 0 44 36V36c0 .001 0 .001 0 0Z" />
+                                </svg>
+                            </button>
+
+                            <!-- End: Video thumbnail -->
+                            <div class="card-body rounded-b-xl bg-contessa-200 dark:bg-stone-900">
+                                <h2 class="card-title">Blog</h2>
+                                <p>Content Management System for posts with comments and likes</p>
+                                <ul class="max-w-md space-y-1 list-inside text-stone-500 dark:text-stone-400">
+                                    <li class="flex items-center">
+                                        <svg class="w-3.5 h-3.5 me-2 text-contessa-500 dark:text-contessa-400 flex-shrink-0"
+                                            aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                                            viewBox="0 0 20 20">
+                                            <path
+                                                d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z" />
+                                        </svg>
+                                        Filament admin panel
+                                    </li>
+                                    <li class="flex items-center">
+                                        <svg class="w-3.5 h-3.5 me-2 text-contessa-500 dark:text-contessa-400 flex-shrink-0"
+                                            aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                                            viewBox="0 0 20 20">
+                                            <path
+                                                d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z" />
+                                        </svg>
+                                        Custom roles
+                                    </li>
+                                    <li class="flex items-center">
+                                        <svg class="w-3.5 h-3.5 me-2 text-contessa-500 dark:text-contessa-400 flex-shrink-0"
+                                            aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                                            viewBox="0 0 20 20">
+                                            <path
+                                                d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z" />
+                                        </svg>
+                                        Language switcher
+                                    </li>
+                                    <li class="flex items-center">
+                                        <svg class="w-3.5 h-3.5 me-2 text-contessa-500 dark:text-contessa-400 flex-shrink-0"
+                                            aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                                            viewBox="0 0 20 20">
+                                            <path
+                                                d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z" />
+                                        </svg>
+                                        Eager Loading (Optimization)
+                                    </li>
+                                </ul>
+                                <div class="justify-end card-actions">
+                                    <button class="px-3 py-3 text-gray-400 border border-gray-400 rounded-xl "
+                                        disabled>View Source</button>
+                                    <button
+                                        class="px-3 py-3 border border-stone-900 dark:border-white rounded-xl hover:bg-gradient-to-br from-contessa-400 to-contessa-700 hover:border-none">Watch
+                                        Demo</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- contact -->
+        <section class="p-5 mx-auto sm:py-20 dark:bg-stone-900" id="contact">
+            <div class="text-center">
+                <h2 class="text-4xl leading-tight primary-color">Contact Me</h2>
+            </div>
+            <div class="max-w-[800px] mx-auto">
+                <div class="mt-6 rounded-xl">
+                    <div class="p-10">
+                        <form method="post"
+                            action="https://forms.un-static.com/forms/1841c22b5f6576760fe3e91df1beece64b205e10">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-5 gap-y-4">
+                                <div>
+                                    <div class="mt-2.5">
+                                        <input type="text" name="name" placeholder="Your Name"
+                                            class="w-full px-4 py-4 text-gray-400 placeholder-gray-400 border border-gray-700 rounded-md dark:bg-stone-800 focus:outline-none focus:border-stone-300" />
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="mt-2.5">
+                                        <input type="email" name="email" placeholder="Your Email"
+                                            class="w-full px-4 py-4 text-gray-400 placeholder-gray-400 border border-gray-700 rounded-md dark:bg-stone-800 focus:outline-none focus:border-stone-300" />
+                                    </div>
+                                </div>
+                                <div class="sm:col-span-2">
+                                    <div class="mt-2.5">
+                                        <textarea name="message" placeholder="Your Message"
+                                            class="w-full px-4 py-4 text-gray-400 placeholder-gray-400 border border-gray-700 rounded-md dark:bg-stone-800 focus:outline-none focus:border-stone-300"
+                                            rows="4"></textarea>
+                                    </div>
+                                </div>
+                                <div class="sm:col-span-2">
+                                    <button type="submit"
+                                        class="w-full p-4 mt-2 text-xl font-semibold text-white rounded-md bg-primary-color">Send</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+        </section>
+    </main>
+
+    <!-- footer -->
+    <footer>
+        <div class="sm:h-[150px] p-12 flex justify-between mx-auto bg-contessa-300 dark:bg-stone-800">
+            <a href="/"><span class="primary-color">AntoniyaDev</span></a>
+            <p class="dark:text-stone-200">st.antoniya@gmail.com</p>
+        </div>
+    </footer>
+
+</body>
+
+</html>

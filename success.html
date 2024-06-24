@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <link href="./output.css" rel="stylesheet">
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.13.8/dist/cdn.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body class="bg-slate-900">
+    <header class="[clip-path:polygon(0%_0%,100%_0,100%_85vh,0_100%)]">
+        <!-- navbar -->
+        <div x-data="{ nav: false }"
+            class="relative top-0 left-0 right-0 flex items-center justify-between py-3 mx-auto text-gray-400 bg-slate-900 full-w h-100 max-w-1200">
+            <a href="/">
+                <h1 class="ml-4 text-3xl font-bold primary-color">AntoniyaDev</h1>
+            </a>
+            <ul class="hidden md:flex">
+                <li class="p-5"><a href="#about">About Me</a></li>
+                <li class="p-5"><a href="#work">Work</a></li>
+                <li class="p-5"><a href="#contact">Contact</a></li>
+            </ul>
+            <div @click="nav = !nav" class="block mr-6 md:hidden ">
+                <svg x-show="!nav" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
+                    class="w-10 h-10">
+                    <path fill-rule="evenodd"
+                        d="M2 4.75A.75.75 0 0 1 2.75 4h14.5a.75.75 0 0 1 0 1.5H2.75A.75.75 0 0 1 2 4.75ZM2 10a.75.75 0 0 1 .75-.75h14.5a.75.75 0 0 1 0 1.5H2.75A.75.75 0 0 1 2 10Zm0 5.25a.75.75 0 0 1 .75-.75h14.5a.75.75 0 0 1 0 1.5H2.75a.75.75 0 0 1-.75-.75Z"
+                        clip-rule="evenodd" />
+                </svg>
+                <svg x-show="nav" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
+                    class="w-10 h-10">
+                    <path
+                        d="M6.28 5.22a.75.75 0 0 0-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 1 0 1.06 1.06L10 11.06l3.72 3.72a.75.75 0 1 0 1.06-1.06L11.06 10l3.72-3.72a.75.75 0 0 0-1.06-1.06L10 8.94 6.28 5.22Z" />
+                </svg>
+            </div>
+            <div x-show="nav" class="fixed h-full left-0 top-0 w-[60%] bg-slate-900 ease-in-out duration-500">
+                <a href="/">
+                    <h1 class="m-4 text-3xl font-bold primary-color">AntoniyaDev</h1>
+                </a>
+                <ul class="p-8 text-2xl">
+                    <li class="p-2"><a @click="nav=!nav" href="#about">About Me</a></li>
+                    <li class="p-2"><a @click="nav=!nav" href="#work">Work</a></li>
+                    <li class="p-2"><a @click="nav=!nav" href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            <!-- <div :class="[nav ? 'fixed h-full left-0 top-0 w-[60%] bg-[#202121] ease-in-out duration-500' : 'fixed left-[-100%]'"></div> -->
+        </div>
+
+
+    </header>
+
+    <main class="h-[95vh] flex flex-col items-center justify-center">
+        <div class="text-3xl text-gray-400">Thank you for your email. I will get back to
+            you
+            shortly :)</div>
+        <a href="/"
+            class="px-6 py-3 mx-auto mt-1 text-white uppercase border-gray-400 rounded-xl bg-gradient-to-br from-orange-500 to-pink-500 hover:bg-none hover:border">Return</a>
+
+    </main>
+</body>
+
+</html>
