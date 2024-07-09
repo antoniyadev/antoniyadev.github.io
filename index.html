@@ -233,7 +233,7 @@
                                 @click.outside="modalOpen3 = false" @keydown.escape.window="modalOpen3 = false">
                                 <video x-init="$watch('modalOpen3', value => value ? $el.play() : $el.pause())"
                                     width="1920" height="1080" loop controls>
-                                    <source src="video/screen-capture.webm" type="video/webm" />
+                                    <source src="video/sighty.webm" type="video/webm" />
                                     Your browser does not support the video tag.
                                 </video>
                             </div>
@@ -249,7 +249,7 @@
                                 @click.outside="modalOpen4 = false" @keydown.escape.window="modalOpen4 = false">
                                 <video x-init="$watch('modalOpen4', value => value ? $el.play() : $el.pause())"
                                     width="1920" height="1080" loop controls>
-                                    <source src="video/screen-capture.webm" type="video/webm" />
+                                    <source src="video/blogy.webm" type="video/webm" />
                                     Your browser does not support the video tag.
                                 </video>
                             </div>
@@ -413,7 +413,7 @@
                         <!-- proj3 -->
                         <div class="transition-transform duration-300 transform shadow-xl hover:scale-105 card">
                             <!-- Video thumbnail -->
-                            <button class="relative flex items-center justify-center " @click="modalOpen1 = true"
+                            <button class="relative flex items-center justify-center " @click="modalOpen3 = true"
                                 aria-controls="modal" aria-label="Watch the video">
 
                                 <img class="w-full h-full transition-shadow duration-300 ease-in-out shadow-2xl focus:outline-none focus-visible:ring focus-visible:ring-indigo-300 rounded-t-xl group"
@@ -458,7 +458,7 @@
                                             <path
                                                 d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z" />
                                         </svg>
-                                        Add to cart and checkout tickets
+                                        Buy e-tickets
                                     </li>
                                     <li class="flex items-center">
                                         <svg class="w-3.5 h-3.5 me-2 text-contessa-500 dark:text-contessa-400 flex-shrink-0"
@@ -467,14 +467,14 @@
                                             <path
                                                 d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z" />
                                         </svg>
-                                        Print tickets to pdf
+                                        MultiStep form
                                     </li>
                                 </ul>
                                 <div class="justify-end card-actions">
                                     <a href="https://github.com/antoniyadev/sightseeing" target="_blank"
                                         class="px-3 py-3 border border-stone-900 dark:border-white rounded-xl hover:bg-gradient-to-br from-contessa-400 to-contessa-700 hover:border-none">View
                                         Source</a>
-                                    <button
+                                    <button @click="modalOpen3 = true"
                                         class="px-3 py-3 border border-stone-900 dark:border-white rounded-xl hover:bg-gradient-to-br from-contessa-400 to-contessa-700 hover:border-none">Watch
                                         Demo</button>
                                 </div>
@@ -485,7 +485,7 @@
                         <!-- proj4 -->
                         <div class="transition-transform duration-300 transform shadow-xl hover:scale-105 card">
                             <!-- Video thumbnail -->
-                            <button class="relative flex items-center justify-center " @click="modalOpen1 = true"
+                            <button class="relative flex items-center justify-center " @click="modalOpen4 = true"
                                 aria-controls="modal" aria-label="Watch the video">
 
                                 <img class="w-full h-full transition-shadow duration-300 ease-in-out shadow-2xl focus:outline-none focus-visible:ring focus-visible:ring-indigo-300 rounded-t-xl group"
@@ -545,7 +545,7 @@
                                 <div class="justify-end card-actions">
                                     <button class="px-3 py-3 text-gray-400 border border-gray-400 rounded-xl "
                                         disabled>View Source</button>
-                                    <button
+                                    <button @click="modalOpen4 = true"
                                         class="px-3 py-3 border border-stone-900 dark:border-white rounded-xl hover:bg-gradient-to-br from-contessa-400 to-contessa-700 hover:border-none">Watch
                                         Demo</button>
                                 </div>
