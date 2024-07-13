@@ -9969,6 +9969,11 @@ html:has(.drawer-open.drawer-open) {
   width: 60%;
 }
 
+.w-\[max-content\] {
+  width: -moz-max-content;
+  width: max-content;
+}
+
 .w-\[this-is\\\\\] {
   width: this-is\\;
 }
@@ -10147,7 +10152,7 @@ html:has(.drawer-open.drawer-open) {
 }
 
 .animate-typing {
-  animation: typing 1s steps(50) infinite alternate, blink .7s infinite;
+  animation: typing 2s steps(10), blink .5s step-end infinite;
 }
 
 .touch-auto {
@@ -11513,10 +11518,6 @@ html:has(.drawer-open.drawer-open) {
 
 .pl-8 {
   padding-left: 2rem;
-}
-
-.pr-5 {
-  padding-right: 1.25rem;
 }
 
 .pt-\[10vh\] {

@@ -60,7 +60,7 @@ module.exports = {
         },
       },
       animation: {
-        typing: "typing 1s steps(50) infinite alternate, blink .7s infinite",
+        typing: "typing 2s steps(10), blink .5s step-end infinite",
         moveInLeft: "moveInLeft 2s ease-in .5s",
         moveInBottom: "moveInBottom .5s ease-out",
       },
