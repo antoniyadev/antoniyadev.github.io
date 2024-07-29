@@ -9949,6 +9949,14 @@ html:has(.drawer-open.drawer-open) {
   height: 100%;
 }
 
+.h-48 {
+  height: 12rem;
+}
+
+.h-96 {
+  height: 24rem;
+}
+
 .max-h-full {
   max-height: 100%;
 }
@@ -10152,7 +10160,7 @@ html:has(.drawer-open.drawer-open) {
 }
 
 .animate-typing {
-  animation: typing 2s steps(10), blink .5s step-end infinite;
+  animation: typing 2s steps(20), blink .5s step-end infinite;
 }
 
 .touch-auto {
