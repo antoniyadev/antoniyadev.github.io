@@ -8,16 +8,16 @@
     background-color: black;
 } */
 .primary-color {
-    @apply inline-block text-transparent bg-clip-text bg-gradient-to-r from-contessa-600 to-contessa-800;
+    @apply inline-block text-transparent bg-clip-text bg-gradient-to-r from-[#D66D75] to-[#E29587];
 }
 
 
-.bg-primary-color {
-    @apply inline-block bg-gradient-to-r from-contessa-400 to-contessa-700;
+.primary-background {
+    @apply inline-block bg-gradient-to-r from-[#D66D75] to-[#E29587];
     ;
 }
 
-.section-primary-color {
-    @apply bg-gradient-to-r from-contessa-400 to-contessa-700;
+.primary-gradient {
+    @apply from-[#D66D75] to-[#E29587];
     ;
 }
