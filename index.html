@@ -198,7 +198,8 @@
                                 @click.outside="modalOpen1 = false" @keydown.escape.window="modalOpen1 = false">
                                 <video x-init="$watch('modalOpen1', value => value ? $el.play() : $el.pause())"
                                     width="1920" height="1080" loop controls playsinline>
-                                    <source src="video/shopy.webm" type="video/webm" />
+                                    <!-- <source src="video/shopy.webm" type="video/webm" /> -->
+                                    <source src="video/shopy.mp4" type="video/mp4" />
                                     Your browser does not support the video tag.
                                 </video>
                             </div>
