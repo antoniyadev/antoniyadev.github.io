@@ -197,7 +197,7 @@
                             <div class="w-full max-h-full overflow-hidden bg-black shadow-2xl rounded-3xl aspect-video"
                                 @click.outside="modalOpen1 = false" @keydown.escape.window="modalOpen1 = false">
                                 <video x-init="$watch('modalOpen1', value => value ? $el.play() : $el.pause())"
-                                    width="1920" height="1080" loop controls>
+                                    width="1920" height="1080" loop controls playsinline>
                                     <source src="video/shopy.webm" type="video/webm" />
                                     Your browser does not support the video tag.
                                 </video>
@@ -213,7 +213,7 @@
                             <div class="w-full max-h-full overflow-hidden bg-black shadow-2xl rounded-3xl aspect-video"
                                 @click.outside="modalOpen2 = false" @keydown.escape.window="modalOpen2 = false">
                                 <video x-init="$watch('modalOpen2', value => value ? $el.play() : $el.pause())"
-                                    width="1920" height="1080" loop controls>
+                                    width="1920" height="1080" loop controls playsinline>
                                     <source src="video/chaty.webm" type="video/webm" />
                                     Your browser does not support the video tag.
                                 </video>
@@ -229,7 +229,7 @@
                             <div class="w-full max-h-full overflow-hidden bg-black shadow-2xl rounded-3xl aspect-video"
                                 @click.outside="modalOpen3 = false" @keydown.escape.window="modalOpen3 = false">
                                 <video x-init="$watch('modalOpen3', value => value ? $el.play() : $el.pause())"
-                                    width="1920" height="1080" loop controls>
+                                    width="1920" height="1080" loop controls playsinline>
                                     <source src="video/sighty.webm" type="video/webm" />
                                     Your browser does not support the video tag.
                                 </video>
@@ -245,7 +245,7 @@
                             <div class="w-full max-h-full overflow-hidden bg-black shadow-2xl rounded-3xl aspect-video"
                                 @click.outside="modalOpen4 = false" @keydown.escape.window="modalOpen4 = false">
                                 <video x-init="$watch('modalOpen4', value => value ? $el.play() : $el.pause())"
-                                    width="1920" height="1080" loop controls>
+                                    width="1920" height="1080" loop controls playsinline>
                                     <source src="video/blogy.webm" type="video/webm" />
                                     Your browser does not support the video tag.
                                 </video>
